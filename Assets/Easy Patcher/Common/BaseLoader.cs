@@ -79,7 +79,7 @@ public class BaseLoader : MonoBehaviour {
 	}
 #endif
 
-	static string GetPlatformFolderForAssetBundles(RuntimePlatform platform)
+	public static string GetPlatformFolderForAssetBundles(RuntimePlatform platform)
 	{
 		switch(platform)
 		{
