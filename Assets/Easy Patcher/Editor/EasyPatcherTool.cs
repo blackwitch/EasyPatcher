@@ -442,11 +442,6 @@ public class EasyPatcherTool : EditorWindow {
 
 		verDoc = XmlTool.loadXml (url);
 
-		if(verDoc == null){
-			Debug.LogError ( "Failed to read [" + CommonPatcherData.patchVersionFN + "] in repository. So read it in local repository.");
-			verDoc = XmlTool.loadXml (CommonPatcherData.repoPath + "/"+ EditorUserBuildSettings.activeBuildTarget+ "/" + CommonPatcherData.patchVersionFN);
-		}
-
 		if(verDoc == null)
 		{
 			//	make local repo
