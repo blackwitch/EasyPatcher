@@ -63,11 +63,13 @@ public static class XmlTool
 			using (TextWriter sw = new StreamWriter(_fullpath, false, System.Text.Encoding.UTF8))
 			{
 				xmlDoc.Save(sw);
+				sw.Close();
 			}
 		}else {
 			TextWriter sw = new StreamWriter(_fullpath, false, System.Text.Encoding.UTF8);
 			if(sw != null){
 				xmlDoc.Save(sw);
+				sw.Close();
 			}
 		}
 	}
