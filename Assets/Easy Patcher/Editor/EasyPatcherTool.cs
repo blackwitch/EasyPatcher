@@ -40,6 +40,7 @@ public class EasyPatcherTool : EditorWindow {
 		EasyPatcherTool window = (EasyPatcherTool)EditorWindow.GetWindow(typeof(EasyPatcherTool),false, "Easy Patcher", false);
 
 		window.listPlatform.Add (BuildTarget.Android.ToString());
+		window.listPlatform.Add (BuildTarget.iOS.ToString ());
 		window.listPlatform.Add (BuildTarget.StandaloneWindows.ToString());
 
 		window.LoadConfigXML (CommonPatcherData.cnfFN);
