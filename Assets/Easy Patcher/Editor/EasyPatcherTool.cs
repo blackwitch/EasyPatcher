@@ -514,9 +514,13 @@ public class EasyPatcherTool : EditorWindow {
 		string url = CommonPatcherData.repoPath + "/" + EditorUserBuildSettings.activeBuildTarget + "/" + CommonPatcherData.patchVersionFN;
 
 		if (verDoc == null) {
-			Debug.LogError (" Restart AssetBundleMngWindow. Version data is incorrect!");
-			return;
+			LoadVersionXML();
+			if(verDoc == null) {
+				Debug.LogError (" Restart AssetBundleMngWindow. Version data is incorrect!");
+				return;
+			}
 		}
+
 		if (lastMajorVersion >= Convert.ToInt32 (chkLastMajorVersion) && lastMinorVersion >= Convert.ToInt32 (chkLastMinorVersion)) {
 			Debug.LogError (" Version is incorrect! New version is higher than old version.");
 			return;
