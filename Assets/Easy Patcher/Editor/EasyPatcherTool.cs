@@ -148,6 +148,7 @@ public class EasyPatcherTool : EditorWindow {
 		if (GUILayout.Button ("Build AssetBundles", GUILayout.Width (150))) {
 			ActiveABMWType=ABMWType.Build;
 			BuildScript.BuildAssetBundles();
+			return;
 		}
 
 		if (GUILayout.Button ("unregisted assets", GUILayout.Width (150))) {
