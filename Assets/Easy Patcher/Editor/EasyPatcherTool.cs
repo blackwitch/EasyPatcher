@@ -38,11 +38,12 @@ public class EasyPatcherTool : EditorWindow {
 	[MenuItem("Easy Patcher/Manager")]
 	public static void ShowWindow(){
 		EasyPatcherTool window = (EasyPatcherTool)EditorWindow.GetWindow(typeof(EasyPatcherTool),false, "Easy Patcher", false);
-		window.LoadConfigXML (CommonPatcherData.cnfFN);
-		window.LoadVersionXML ();
 
 		window.listPlatform.Add (BuildTarget.Android.ToString());
 		window.listPlatform.Add (BuildTarget.StandaloneWindows.ToString());
+
+		window.LoadConfigXML (CommonPatcherData.cnfFN);
+		window.LoadVersionXML ();
 	}
 
 	void OnGUI(){
