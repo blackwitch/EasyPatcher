@@ -40,11 +40,12 @@ public class EasyPatcherTool : EditorWindow {
 		EasyPatcherTool window = (EasyPatcherTool)EditorWindow.GetWindow(typeof(EasyPatcherTool),false, "Easy Patcher", false);
 
 		window.listPlatform.Add (BuildTarget.Android.ToString());
-		window.listPlatform.Add (BuildTarget.iOS.ToString ());
+		window.listPlatform.Add (BuildTarget.iOS.ToString());
 		window.listPlatform.Add (BuildTarget.StandaloneWindows.ToString());
 
 		window.LoadConfigXML (CommonPatcherData.cnfFN);
 		window.LoadVersionXML ();
+
 	}
 
 	void OnGUI(){
@@ -136,6 +137,7 @@ public class EasyPatcherTool : EditorWindow {
 		if (GUILayout.Button ("Save", GUILayout.Width (100))) {
 			cnfDoc.SelectSingleNode ("/ToolConfig/Repository").Attributes ["path"].Value = CommonPatcherData.repoPath;
 			SaveConfigXML(CommonPatcherData.cnfFN , cnfDoc);
+			MakeLocalRepo();
 		}
 
 		GUILayout.EndHorizontal();
@@ -406,7 +408,6 @@ public class EasyPatcherTool : EditorWindow {
 			if(cnfDoc == null)
 				throw new Exception("not found the file");
 		}catch(Exception e){
-			Debug.LogError ( e.Message );
 			cnfDoc = new XmlDocument();
 			XmlNode root = cnfDoc.CreateXmlDeclaration("1.0", "UTF-8", null);
 			cnfDoc.AppendChild( root );
@@ -516,7 +517,6 @@ public class EasyPatcherTool : EditorWindow {
 				return;
 			}
 		}
-
 		if (lastMajorVersion >= Convert.ToInt32 (chkLastMajorVersion) && lastMinorVersion >= Convert.ToInt32 (chkLastMinorVersion)) {
 			Debug.LogError (" Version is incorrect! New version is higher than old version.");
 			return;
@@ -689,7 +689,8 @@ public class EasyPatcherTool : EditorWindow {
 	///////////////////////////////////////////////////////
 	//	make local repository
 	void MakeLocalRepo(){
-		Directory.CreateDirectory (CommonPatcherData.repoPath);
+		if (CommonPatcherData.repoPath != "")
+			Directory.CreateDirectory (CommonPatcherData.repoPath);
 		Directory.CreateDirectory (CommonPatcherData.repoPath + "/" + EditorUserBuildSettings.activeBuildTarget);
 		Directory.CreateDirectory (CommonPatcherData.repoPath + "/" + EditorUserBuildSettings.activeBuildTarget + "/" + CommonPatcherData.lastVersionRepo);
 

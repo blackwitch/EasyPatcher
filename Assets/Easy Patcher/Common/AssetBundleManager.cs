@@ -114,7 +114,7 @@ public class AssetBundleManager : MonoBehaviour
 		// Make sure all dependencies are loaded
 		foreach(var dependency in dependencies)
 		{
-			if (m_DownloadingErrors.TryGetValue(dependency, out error) )
+			if (m_DownloadingErrors.TryGetValue(assetBundleName, out error) )
 			{
 				return bundle;
 			}
